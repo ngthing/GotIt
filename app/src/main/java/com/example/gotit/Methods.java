@@ -1,4 +1,8 @@
 package com.example.gotit;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -64,6 +68,16 @@ public class Methods {
             Log.e("Methods.compareTimes()", e.getMessage());
             return 0;
         }
+    }
+
+    public static void sendAutoResponse(Context c, String phone){
+        SmsManager smsManager = SmsManager.getDefault();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
+
+
+        String message = preferences.getString("outgoingMessage", "No message");
+
+        smsManager.sendTextMessage(phone, null, message, null, null);
     }
 
 }
