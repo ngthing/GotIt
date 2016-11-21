@@ -143,28 +143,28 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                     preferences.edit().putBoolean("monday", false).apply();
                 }
 
-                if (monday.isChecked()) {
-                    preferences.edit().putBoolean("monday", true).apply();
+                if (tuesday.isChecked()) {
+                    preferences.edit().putBoolean("tuesday", true).apply();
                 } else {
-                    preferences.edit().putBoolean("monday", false).apply();
+                    preferences.edit().putBoolean("tuesday", false).apply();
                 }
 
-                if (monday.isChecked()) {
-                    preferences.edit().putBoolean("monday", true).apply();
+                if (wednesday.isChecked()) {
+                    preferences.edit().putBoolean("wednesday", true).apply();
                 } else {
-                    preferences.edit().putBoolean("monday", false).apply();
+                    preferences.edit().putBoolean("wednesday", false).apply();
                 }
 
-                if (monday.isChecked()) {
-                    preferences.edit().putBoolean("monday", true).apply();
+                if (thursday.isChecked()) {
+                    preferences.edit().putBoolean("thursday", true).apply();
                 } else {
-                    preferences.edit().putBoolean("monday", false).apply();
+                    preferences.edit().putBoolean("thursday", false).apply();
                 }
 
                 if (friday.isChecked()) {
                     preferences.edit().putBoolean("friday", true).apply();
                 } else {
-                    preferences.edit().putBoolean("monday", false).apply();
+                    preferences.edit().putBoolean("friday", false).apply();
                 }
 
                 if (saturday.isChecked()) {
