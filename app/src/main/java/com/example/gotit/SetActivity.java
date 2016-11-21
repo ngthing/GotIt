@@ -1,4 +1,5 @@
 package com.example.gotit;
+
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.Calendar;
 
 public class SetActivity extends AppCompatActivity implements View.OnClickListener{
@@ -30,12 +30,20 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
     String  message_from_edit_text;
     String start;
     String end;
+    Button  btnTimePicker, btnEndTimePicker;
+    EditText txtTime, txtEndTime;
+    private int mHour, mMinute, mHourEnd,mMinuteEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
-
+        btnTimePicker=(Button)findViewById(R.id.btn_time);
+        txtTime=(EditText)findViewById(R.id.in_time);
+        btnTimePicker.setOnClickListener(this);
+        btnEndTimePicker=(Button)findViewById(R.id.btn_timeEnd);
+        txtEndTime=(EditText)findViewById(R.id.in_timeEnd);
+        btnEndTimePicker.setOnClickListener(this);
         setupViews();
     }
 
@@ -86,7 +94,49 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
         }
+
+        if (v == btnTimePicker) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(android.widget.TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            txtTime.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+        if (v == btnEndTimePicker) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHourEnd = c.get(Calendar.HOUR_OF_DAY);
+            mMinuteEnd = c.get(Calendar.MINUTE);
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(android.widget.TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            txtEndTime.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHourEnd, mMinuteEnd, false);
+            timePickerDialog.show();
+
+        }
     }
+
 
     //show the message error
     public void showDialog(){

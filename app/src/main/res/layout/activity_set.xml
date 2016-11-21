@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GotYa3000"
+                android:text="@string/hello"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <LinearLayout
@@ -56,15 +56,43 @@
                     android:id="@+id/end_et" />
 
             </LinearLayout>
-
-
-            <EditText
-                android:hint="Answer Message"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/message_et"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:layout_weight="0.52" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT BEGIN TIME"
+                    android:id="@+id/btn_time" />
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/in_time"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT END TIME"
+                    android:id="@+id/btn_timeEnd" />
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/in_timeEnd" />
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_day"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
             <CheckBox
                 android:text="Monday"
@@ -125,6 +153,15 @@
                 android:id="@+id/radioButton7"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
+
+
+            <EditText
+                android:hint="@string/input_message"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/message_et"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:layout_weight="0.52" />
 
             <Button
                 android:layout_width="wrap_content"

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         //validation
-        isactive =   preferences.getBoolean("active ",false);
+        isactive =  preferences.getBoolean("active ",false);
         if(isactive){
           Intent intent = new Intent(this, ViewActivity.class);
             startActivity(intent);
