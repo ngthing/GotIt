@@ -30,36 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:inputType="textPersonName"
-                    android:text="Begin Time"
-                    android:ems="10"
-                    android:layout_below="@+id/textView3"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:id="@+id/begin_et" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:inputType="textPersonName"
-                    android:text="End Time"
-                    android:ems="10"
-                    android:layout_below="@+id/textView3"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:id="@+id/end_et" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
