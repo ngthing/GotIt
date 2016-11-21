@@ -1,18 +1,18 @@
 package com.example.gotit;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
+
 import java.util.Calendar;
 
 public class SetActivity extends AppCompatActivity implements View.OnClickListener{
@@ -42,12 +42,15 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         btnEndTimePicker=(Button)findViewById(R.id.btn_timeEnd);
         txtEndTime=(EditText)findViewById(R.id.in_timeEnd);
         btnEndTimePicker.setOnClickListener(this);
+        txtTime.setFocusable(false);
+        txtEndTime.setFocusable(false);
         setupViews();
     }
 
     private void setupViews() {
         submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
+
     }
 
     //validayion
@@ -82,8 +85,15 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                         @Override
                         public void onTimeSet(android.widget.TimePicker view, int hourOfDay,
                                               int minute) {
-
-                            txtTime.setText(hourOfDay + ":" + minute);
+                            String minute_str = "";
+                            String hour_str = "";
+                            if (minute < 10) {
+                                minute_str = "0" + minute;
+                            }
+                            if (hourOfDay < 10) {
+                                hour_str = "0" + hourOfDay;
+                            }
+                            txtTime.setText(hour_str + ":" + minute_str);
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -101,12 +111,78 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                         @Override
                         public void onTimeSet(android.widget.TimePicker view, int hourOfDay,
                                               int minute) {
-
-                            txtEndTime.setText(hourOfDay + ":" + minute);
+                            String minute_str = "";
+                            String hour_str = "";
+                            if (minute < 10) {
+                                minute_str = "0" + minute;
+                            }
+                            if (hourOfDay < 10) {
+                                hour_str = "0" + hourOfDay;
+                            }
+                            txtTime.setText(hour_str + ":" + minute_str);
                         }
                     }, mHourEnd, mMinuteEnd, false);
             timePickerDialog.show();
 
+        }
+
+        if (v == submitButton) {
+            if (validation()) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String begin = txtTime.getText().toString();
+                String end = txtEndTime.getText().toString();
+                String message = txtEndTime.getText().toString();
+
+                preferences.edit().putString("begin", begin).apply();
+                preferences.edit().putString("end", end).apply();
+                preferences.edit().putString("message", message).apply();
+
+                if (monday.isChecked()) {
+                    preferences.edit().putBoolean("monday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("monday", false).apply();
+                }
+
+                if (monday.isChecked()) {
+                    preferences.edit().putBoolean("monday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("monday", false).apply();
+                }
+
+                if (monday.isChecked()) {
+                    preferences.edit().putBoolean("monday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("monday", false).apply();
+                }
+
+                if (monday.isChecked()) {
+                    preferences.edit().putBoolean("monday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("monday", false).apply();
+                }
+
+                if (friday.isChecked()) {
+                    preferences.edit().putBoolean("friday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("monday", false).apply();
+                }
+
+                if (saturday.isChecked()) {
+                    preferences.edit().putBoolean("saturday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("saturday", false).apply();
+                }
+
+                if (sunday.isChecked()) {
+                    preferences.edit().putBoolean("sunday", true).apply();
+                } else {
+                    preferences.edit().putBoolean("sunday", false).apply();
+                }
+
+
+                Intent intent = new Intent(this, ViewActivity.class);
+                this.startActivity(intent);
+            }
         }
     }
 
