@@ -75,7 +75,7 @@ public class Methods {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
 
 
-        String message = preferences.getString("outgoingMessage", "No message");
+        String message = preferences.getString("message", "No message");
 
         smsManager.sendTextMessage(phone, null, message, null, null);
     }
