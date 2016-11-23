@@ -4,61 +4,57 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-
-import java.util.Calendar;
-
-/**
- * Created by Cody on 11/1/2016.
- */
+import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
-    private String TAG = SmsReceiver.class.getSimpleName();
+    // Get the object of SmsManager
+    final SmsManager sms = SmsManager.getDefault();
 
-    public SmsReceiver() {
-    }
-
-    @Override
     public void onReceive(Context context, Intent intent) {
-        // Get the data (SMS data) bound to intent
 
-        if (validate(context)) {
-            Bundle bundle = intent.getExtras();
+        // Retrieves a map of extended data from the intent.
+        final Bundle bundle = intent.getExtras();
 
-            SmsMessage[] msgs = null;
-
-            String str = "";
+        try {
 
             if (bundle != null) {
-                // Retrieve the SMS Messages received
-                Object[] pdus = (Object[]) bundle.get("pdus");
-                msgs = new SmsMessage[pdus.length];
 
-                String phone = "";
-                // For every SMS message received
-                for (int i=0; i < msgs.length; i++) {
-                    // Convert Object array
-                    msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                    // Sender's phone number
-                    phone = msgs[i].getOriginatingAddress();
-                }
+                final Object[] pdusObj = (Object[]) bundle.get("pdus");
 
-                Log.e("!!!!!!!!!", "TEST");
+                for (int i = 0; i < pdusObj.length; i++) {
 
-                //if (validate(context)) {
-                if (true) {
-                    Methods.sendAutoResponse(context, phone);
-                }
-            }
+                    SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
+                    String phoneNumber = currentMessage.getDisplayOriginatingAddress();
+
+                    String senderNum = phoneNumber;
+                    String message = currentMessage.getDisplayMessageBody();
+
+                    Log.i("SmsReceiver", "senderNum: "+ senderNum + "; message: " + message);
+
+
+                    // Show Alert
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context,
+                            "senderNum: "+ senderNum + ", message: " + message, duration);
+                    toast.show();
+
+                } // end for loop
+            } // bundle is null
+
+        } catch (Exception e) {
+            Log.e("SmsReceiver", "Exception smsReceiver" +e);
+
         }
-
-
     }
 
-    private Boolean validate(Context context) {
+
+    /*private Boolean validate(Context context) {
         Calendar c = Calendar.getInstance();
         String day = Methods.getDay(c.get(Calendar.DAY_OF_WEEK));
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -75,7 +71,7 @@ public class SmsReceiver extends BroadcastReceiver {
         }
 
         return false;
-    }
+    }*/
 
 
 }

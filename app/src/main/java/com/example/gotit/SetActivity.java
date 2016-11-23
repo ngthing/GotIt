@@ -89,9 +89,13 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                             String hour_str = "";
                             if (minute < 10) {
                                 minute_str = "0" + minute;
+                            } else {
+                                minute_str = minute+"";
                             }
                             if (hourOfDay < 10) {
                                 hour_str = "0" + hourOfDay;
+                            } else {
+                                hour_str = "" + hourOfDay;
                             }
                             txtTime.setText(hour_str + ":" + minute_str);
                         }
@@ -115,9 +119,13 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                             String hour_str = "";
                             if (minute < 10) {
                                 minute_str = "0" + minute;
+                            } else {
+                                minute_str = minute+"";
                             }
                             if (hourOfDay < 10) {
                                 hour_str = "0" + hourOfDay;
+                            } else {
+                                hour_str = "" + hourOfDay;
                             }
                             txtTime.setText(hour_str + ":" + minute_str);
                         }

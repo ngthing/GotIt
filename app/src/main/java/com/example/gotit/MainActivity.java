@@ -1,7 +1,9 @@
 package com.example.gotit;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 
 /*
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
 
+        Log.d("!!!!!!!!!!","!!!!!!!!!!");
+
         //validation
         isactive =  preferences.getBoolean("active ",false);
         if(isactive){
@@ -60,5 +65,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
 }
