@@ -1,11 +1,16 @@
 package com.example.gotit;
 
+import android.Manifest;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,6 +41,21 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+
+        setupViews();
+
+        //get permissions
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {android.Manifest.permission.SEND_SMS, android.Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS};
+
+        if(!getPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+    }
+
+    private void setupViews() {
+        submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(this);
         btnTimePicker=(Button)findViewById(R.id.btn_time);
         txtTime=(EditText)findViewById(R.id.in_time);
         btnTimePicker.setOnClickListener(this);
@@ -44,12 +64,6 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         btnEndTimePicker.setOnClickListener(this);
         txtTime.setFocusable(false);
         txtEndTime.setFocusable(false);
-        setupViews();
-    }
-
-    private void setupViews() {
-        submitButton = (Button) findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(this);
 
     }
 
@@ -194,7 +208,6 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-
     //show the message error
     public void showDialog(){
         AlertDialog alertDialog = new AlertDialog.Builder(SetActivity.this).create();
@@ -210,6 +223,17 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                     }
                 });
         alertDialog.show();
+    }
+
+    public boolean getPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

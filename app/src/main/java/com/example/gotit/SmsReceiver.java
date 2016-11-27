@@ -1,68 +1,85 @@
 package com.example.gotit;
 
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.Toast;
+
+
+import java.util.Calendar;
+
+
+/**
+ * Created by Cody on 11/1/2016.
+ */
+
 
 public class SmsReceiver extends BroadcastReceiver {
-    // Get the object of SmsManager
-    final SmsManager sms = SmsManager.getDefault();
-
-    public void onReceive(Context context, Intent intent) {
-
-        // Retrieves a map of extended data from the intent.
-        final Bundle bundle = intent.getExtras();
-
-        try {
-
-            if (bundle != null) {
-
-                final Object[] pdusObj = (Object[]) bundle.get("pdus");
-
-                for (int i = 0; i < pdusObj.length; i++) {
-
-                    SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
-                    String phoneNumber = currentMessage.getDisplayOriginatingAddress();
-
-                    String senderNum = phoneNumber;
-                    String message = currentMessage.getDisplayMessageBody();
-
-                    Log.i("SmsReceiver", "senderNum: "+ senderNum + "; message: " + message);
+    private String TAG = SmsReceiver.class.getSimpleName();
 
 
-                    // Show Alert
-                    int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context,
-                            "senderNum: "+ senderNum + ", message: " + message, duration);
-                    toast.show();
-
-                } // end for loop
-            } // bundle is null
-
-        } catch (Exception e) {
-            Log.e("SmsReceiver", "Exception smsReceiver" +e);
-
-        }
+    public SmsReceiver() {
     }
 
 
-    /*private Boolean validate(Context context) {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // Get the data (SMS data) bound to intent
+
+
+        if (validate(context)) {
+            Bundle bundle = intent.getExtras();
+
+
+            SmsMessage[] msgs = null;
+
+
+            String str = "";
+
+
+            if (bundle != null) {
+                // Retrieve the SMS Messages received
+                Object[] pdus = (Object[]) bundle.get("pdus");
+                msgs = new SmsMessage[pdus.length];
+
+
+                String phone = "";
+                // For every SMS message received
+                for (int i=0; i < msgs.length; i++) {
+                    // Convert Object array
+                    msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    // Sender's phone number
+                    phone = msgs[i].getOriginatingAddress();
+                }
+
+
+                Log.e("!!!!!!!!!", "TEST");
+
+
+                //if (validate(context)) {
+                if (true) {
+                    Methods.sendAutoResponse(context, phone);
+                }
+            }
+        }
+    }
+
+    private Boolean validate(Context context) {
         Calendar c = Calendar.getInstance();
         String day = Methods.getDay(c.get(Calendar.DAY_OF_WEEK));
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
 
         if (preferences.getString(day,"").equals("true")) {
             String currTime = Methods.getTime();
             String beginTime = preferences.getString("begin", "");
             String endTime = preferences.getString("end", "");
+
 
             // if currTime is later than beginTime and before endTime
             if (Methods.compareTimes(currTime, beginTime) >= 0 && Methods.compareTimes(currTime, endTime) <= 0) {
@@ -70,8 +87,10 @@ public class SmsReceiver extends BroadcastReceiver {
             }
         }
 
-        return false;
-    }*/
 
+        return false;
+    }
 
 }
+
+

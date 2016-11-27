@@ -33,14 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //get permissions
-        int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {android.Manifest.permission.SEND_SMS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.ACCESS_FINE_LOCATION};
-
-        if(!getPermissions(this, PERMISSIONS)){
-            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
-        }
-
         Log.d("!!!!!!!!!!","!!!!!!!!!!");
 
         //validation
@@ -53,17 +45,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SetActivity.class);
             startActivity(intent);
         }
-    }
-
-    public boolean getPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
 
