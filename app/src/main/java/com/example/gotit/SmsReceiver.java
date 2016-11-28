@@ -74,19 +74,18 @@ public class SmsReceiver extends BroadcastReceiver {
         String day = Methods.getDay(c.get(Calendar.DAY_OF_WEEK));
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
+        if (preferences.getBoolean("active", false)) {
+            if (preferences.getString(day,"").equals("true")) {
+                String currTime = Methods.getTime();
+                String beginTime = preferences.getString("begin", "");
+                String endTime = preferences.getString("end", "");
 
-        if (preferences.getString(day,"").equals("true")) {
-            String currTime = Methods.getTime();
-            String beginTime = preferences.getString("begin", "");
-            String endTime = preferences.getString("end", "");
-
-
-            // if currTime is later than beginTime and before endTime
-            if (Methods.compareTimes(currTime, beginTime) >= 0 && Methods.compareTimes(currTime, endTime) <= 0) {
-                return true;
+                // if currTime is later than beginTime and before endTime
+                if (Methods.compareTimes(currTime, beginTime) >= 0 && Methods.compareTimes(currTime, endTime) <= 0) {
+                    return true;
+                }
             }
         }
-
 
         return false;
     }

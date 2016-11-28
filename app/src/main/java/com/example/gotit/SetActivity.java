@@ -159,6 +159,8 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                 preferences.edit().putString("end", end).apply();
                 preferences.edit().putString("message", message).apply();
 
+                preferences.edit().putBoolean("active", true).apply();
+
                 if (monday.isChecked()) {
                     preferences.edit().putBoolean("monday", true).apply();
                 } else {
