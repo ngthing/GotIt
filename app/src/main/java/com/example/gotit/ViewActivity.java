@@ -56,6 +56,7 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     private void autoFill() {
+
         if (preferences.getBoolean("monday", false)) {
             monday.setTextColor(Color.parseColor("#00FF00"));
         } else {
