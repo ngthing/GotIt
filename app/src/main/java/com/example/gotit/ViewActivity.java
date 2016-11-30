@@ -1,14 +1,16 @@
 package com.example.gotit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-public class ViewActivity extends AppCompatActivity {
+public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences preferences;
     TextView selectedBeginTime;
     TextView selectedEndTime;
@@ -35,7 +37,12 @@ public class ViewActivity extends AppCompatActivity {
 //            if (monday_bool==true)
 //            monday.setText("Monday");
 
+   }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, SetActivity.class);
+        this.startActivity(intent);
     }
 
     private void instantiateViews() {
