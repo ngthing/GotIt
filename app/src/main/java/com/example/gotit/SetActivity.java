@@ -37,6 +37,9 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
     EditText txtTime, txtEndTime;
     private int mHour, mMinute, mHourEnd,mMinuteEnd;
 
+    public static final String PREFS_NAME = "DEF";
+    public static final String PREFS_KEY = "PREFSKEY_String";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,7 +153,7 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
 
         if (v == submitButton) {
             if (validation()) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                 String begin = txtTime.getText().toString();
                 String end = txtEndTime.getText().toString();
                 String message = txtEndTime.getText().toString();
