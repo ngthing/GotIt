@@ -2,6 +2,7 @@ package com.example.gotit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class ViewActivity extends AppCompatActivity {
         setupViews();
         preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
+        autoFill();
             /////////////
 //            boolean monday_bool = preferences.getBoolean("monday",false);
 //            if (monday_bool==true)
@@ -53,7 +55,12 @@ public class ViewActivity extends AppCompatActivity {
 
     }
 
-    private void setupViews() {
+    private void autoFill() {
+        if (preferences.getBoolean("monday", false)) {
+            monday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            monday.setTextColor(Color.parseColor("#FF0000"));
+        }
 
     }
 }

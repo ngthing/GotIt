@@ -38,15 +38,12 @@ public class SmsReceiver extends BroadcastReceiver {
 
             SmsMessage[] msgs = null;
 
-
             String str = "";
-
 
             if (bundle != null) {
                 // Retrieve the SMS Messages received
                 Object[] pdus = (Object[]) bundle.get("pdus");
                 msgs = new SmsMessage[pdus.length];
-
 
                 String phone = "";
                 // For every SMS message received
@@ -57,9 +54,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     phone = msgs[i].getOriginatingAddress();
                 }
 
-
                 Log.e("!!!!!!!!!", "TEST");
-
 
                 //if (validate(context)) {
                 if (true) {
