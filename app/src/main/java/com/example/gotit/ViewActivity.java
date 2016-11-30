@@ -96,5 +96,6 @@ public class ViewActivity extends AppCompatActivity {
         // Set the end time
         selectedEndTime.setText(preferences.getString("end",""));
 
+        //blah
     }
 }
