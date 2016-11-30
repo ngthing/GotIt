@@ -64,16 +64,26 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         btnTimePicker.setOnClickListener(this);
         btnEndTimePicker=(Button)findViewById(R.id.btn_timeEnd);
         txtEndTime=(EditText)findViewById(R.id.in_timeEnd);
+        message = (EditText) findViewById(R.id.message_et);
         btnEndTimePicker.setOnClickListener(this);
         txtTime.setFocusable(false);
         txtEndTime.setFocusable(false);
+        monday = (CheckBox) findViewById(R.id.Monday);
+        wednesday = (CheckBox) findViewById(R.id.Wednesday);
+        tuesday = (CheckBox) findViewById(R.id.Tuesday);
+        friday = (CheckBox) findViewById(R.id.Friday);
+        thursday = (CheckBox) findViewById(R.id.Thursday);
+        saturday = (CheckBox) findViewById(R.id.Saturday);
+        sunday = (CheckBox) findViewById(R.id.Sunday);
+
+
 
     }
 
     //validayion
     private boolean validation(){
-        message_from_edit_text =message.getText().toString();
-        if (message_from_edit_text.isEmpty() || start.isEmpty() || end.isEmpty()){
+        message_from_edit_text = message.getText().toString();
+        if (message_from_edit_text.equals("") || txtTime.getText().equals("") || txtEndTime.getText().equals("")){
             showDialog();
             return false;
         }
