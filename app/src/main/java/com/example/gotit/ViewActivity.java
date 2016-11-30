@@ -28,11 +28,9 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         instantiateViews();
-        setupViews();
         preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         autoFill();
-            /////////////
 //            boolean monday_bool = preferences.getBoolean("monday",false);
 //            if (monday_bool==true)
 //            monday.setText("Monday");
@@ -61,6 +59,42 @@ public class ViewActivity extends AppCompatActivity {
         } else {
             monday.setTextColor(Color.parseColor("#FF0000"));
         }
+        if (preferences.getBoolean("tuesday", false)) {
+            tuesday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            tuesday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (preferences.getBoolean("wednesday", false)) {
+            wednesday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            wednesday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (preferences.getBoolean("thursday", false)) {
+            thursday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            thursday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (preferences.getBoolean("friday", false)) {
+            friday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            friday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (preferences.getBoolean("saturday", false)) {
+            saturday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            saturday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (preferences.getBoolean("sunday", false)) {
+            sunday.setTextColor(Color.parseColor("#00FF00"));
+        } else {
+            sunday.setTextColor(Color.parseColor("#FF0000"));
+        }
+        // Set the message space to the preconfigured message
+        message.setText(preferences.getString("message",""));
+        // Set the begin time
+        selectedBeginTime.setText(preferences.getString("begin",""));
+        // Set the end time
+        selectedEndTime.setText(preferences.getString("end",""));
 
     }
 }

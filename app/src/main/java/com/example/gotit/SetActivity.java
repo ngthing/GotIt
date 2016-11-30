@@ -144,7 +144,7 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                             } else {
                                 hour_str = "" + hourOfDay;
                             }
-                            txtTime.setText(hour_str + ":" + minute_str);
+                            txtEndTime.setText(hour_str + ":" + minute_str);
                         }
                     }, mHourEnd, mMinuteEnd, false);
             timePickerDialog.show();
