@@ -32,7 +32,7 @@ public class SmsReceiver extends BroadcastReceiver {
         // Get the data (SMS data) bound to intent
 
 
-        if (validate(context)) {
+        if (true) {
             Bundle bundle = intent.getExtras();
 
 
@@ -56,10 +56,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 Log.e("!!!!!!!!!", "TEST");
 
-                //if (validate(context)) {
-                if (true) {
-                    Methods.sendAutoResponse(context, phone);
-                }
+                Methods.sendAutoResponse(context, phone);
             }
         }
     }

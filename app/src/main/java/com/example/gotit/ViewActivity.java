@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,6 +23,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     TextView friday;
     TextView saturday;
     TextView sunday;
+    Button button;
     public static final String PREFS_NAME = "DEF";
     public static final String PREFS_KEY = "PREFSKEY_String";
 
@@ -53,11 +55,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         friday = (TextView) findViewById(R.id.friday);
         saturday = (TextView) findViewById(R.id.saturday);
         sunday = (TextView) findViewById(R.id.sunday);
-
+        button = (Button) findViewById(R.id.button);
         message = (TextView) findViewById(R.id.message_tv);
         selectedBeginTime = (TextView) findViewById(R.id.begin_tv);
         selectedEndTime = (TextView) findViewById(R.id.end_tv);
-
+        button.setOnClickListener(this);
     }
 
     private void autoFill() {

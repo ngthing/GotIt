@@ -166,11 +166,11 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
                 SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                 String begin = txtTime.getText().toString();
                 String end = txtEndTime.getText().toString();
-                String message = txtEndTime.getText().toString();
+                String messagestr = message.getText().toString();
 
                 preferences.edit().putString("begin", begin).apply();
                 preferences.edit().putString("end", end).apply();
-                preferences.edit().putString("message", message).apply();
+                preferences.edit().putString("message", messagestr).apply();
 
                 preferences.edit().putBoolean("active", true).apply();
 
