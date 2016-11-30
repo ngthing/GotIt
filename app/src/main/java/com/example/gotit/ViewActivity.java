@@ -28,15 +28,9 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         instantiateViews();
-        setupViews();
         preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         autoFill();
-            /////////////
-//            boolean monday_bool = preferences.getBoolean("monday",false);
-//            if (monday_bool==true)
-//            monday.setText("Monday");
-
 
     }
 
