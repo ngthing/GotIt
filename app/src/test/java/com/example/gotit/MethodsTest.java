@@ -10,7 +10,11 @@ import static org.junit.Assert.*;
 public class MethodsTest {
     @Test
     public void getDay() throws Exception {
+        String result = Methods.getDay(1);
+        String result2 = Methods.getDay(5);
 
+        assertTrue( result.equalsIgnoreCase("monday"));
+        assertTrue( result2.equalsIgnoreCase("friday"));
     }
 
     @Test
@@ -19,7 +23,15 @@ public class MethodsTest {
     }
 
     @Test
-    public void compareTimes() throws Exception {
+    public void compareTimes() {
+        String t1 = "9:00";
+        String t2 = "12:00";
+        String t3 = "20:00";
+
+        int result = Methods.compareTimes(t1,t2);
+        int result2 = Methods.compareTimes(t3, t1);
+        assertTrue(result == -1);
+        assertTrue(result2 == 1);
 
     }
 
