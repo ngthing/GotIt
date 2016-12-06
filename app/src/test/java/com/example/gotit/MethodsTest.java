@@ -2,6 +2,9 @@ package com.example.gotit;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static org.junit.Assert.*;
 
 /**
@@ -19,6 +22,12 @@ public class MethodsTest {
 
     @Test
     public void getTime() throws Exception {
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("kk:mm");
+        String date = sdf.format(c.getTime());
+
+        assertTrue(date.equals(Methods.getTime()));
 
     }
 
