@@ -81,7 +81,7 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    //validayion
+    //validation
     private boolean validation(){
         message_from_edit_text = message.getText().toString();
         if (message_from_edit_text.equals("") || txtTime.getText().equals("") || txtEndTime.getText().equals("")){

@@ -38,7 +38,7 @@ public class Methods {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("kk:mm");
         String date = sdf.format(c.getTime());
-        Log.d("Method.getTime()",date);
+        //Log.d("Method.getTime()",date);
         return date;
     }
 

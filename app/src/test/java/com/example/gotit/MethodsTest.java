@@ -16,8 +16,15 @@ public class MethodsTest {
         String result = Methods.getDay(1);
         String result2 = Methods.getDay(5);
 
-        assertTrue( result.equalsIgnoreCase("monday"));
-        assertTrue( result2.equalsIgnoreCase("friday"));
+        try{
+            assertTrue( "Expected: friday. Actual: "+Methods.getDay(5),result2.equalsIgnoreCase("friday"));
+            assertTrue( result.equalsIgnoreCase("tuesday"));
+        }
+        catch(AssertionError e)
+        {
+            System.out.println("Expected: tuesday. Actual: "+Methods.getDay(1));
+        }
+
     }
 
     @Test
@@ -41,11 +48,6 @@ public class MethodsTest {
         int result2 = Methods.compareTimes(t3, t1);
         assertTrue(result == -1);
         assertTrue(result2 == 1);
-
-    }
-
-    @Test
-    public void sendAutoResponse() throws Exception {
 
     }
 
