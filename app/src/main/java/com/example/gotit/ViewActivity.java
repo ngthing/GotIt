@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences preferences;
@@ -32,13 +35,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         instantiateViews();
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         autoFill();
-//            boolean monday_bool = preferences.getBoolean("monday",false);
-//            if (monday_bool==true)
-//            monday.setText("Monday");
 
+        validate();
    }
 
     @Override
@@ -106,5 +107,26 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         selectedEndTime.setText(preferences.getString("end",""));
 
         //blah
+    }
+
+    private Boolean validate() {
+        Calendar c = Calendar.getInstance();
+        String day = Methods.getDay(c.get(Calendar.DAY_OF_WEEK));
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (preferences.getBoolean("active", false)) {
+            if (preferences.getBoolean(day,false)) {
+                String currTime = Methods.getTime();
+                String beginTime = preferences.getString("begin", "");
+                String endTime = preferences.getString("end", "");
+
+                // if currTime is later than beginTime and before endTime
+                if (Methods.compareTimes(currTime, beginTime) >= 0 && Methods.compareTimes(currTime, endTime) <= 0) {
+                    Toast.makeText(this, "WORKING", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+        return false;
     }
 }

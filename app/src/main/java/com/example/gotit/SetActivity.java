@@ -17,10 +17,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.prefs.Preferences;
 
 public class SetActivity extends AppCompatActivity implements View.OnClickListener{
+    SharedPreferences preferences;
     Button submitButton;
     EditText message;
     CheckBox monday;
@@ -38,7 +41,6 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
     private int mHour, mMinute, mHourEnd,mMinuteEnd;
 
     public static final String PREFS_NAME = "DEF";
-    public static final String PREFS_KEY = "PREFSKEY_String";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void setupViews() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
         btnTimePicker=(Button)findViewById(R.id.btn_time);
@@ -76,8 +79,6 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         saturday = (CheckBox) findViewById(R.id.Saturday);
         sunday = (CheckBox) findViewById(R.id.Sunday);
 
-
-
     }
 
     //validayion
@@ -91,7 +92,7 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
         if (monday.isChecked() || tuesday.isChecked() || wednesday.isChecked() || thursday.isChecked()|| friday.isChecked()||saturday.isChecked()||sunday.isChecked()){
             return true;
         }
-
+        Toast.makeText(this, "", Toast.LENGTH_LONG).show();
         return false;
     }
 
@@ -163,7 +164,6 @@ public class SetActivity extends AppCompatActivity implements View.OnClickListen
 
         if (v == submitButton) {
             if (validation()) {
-                SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                 String begin = txtTime.getText().toString();
                 String end = txtEndTime.getText().toString();
                 String messagestr = message.getText().toString();

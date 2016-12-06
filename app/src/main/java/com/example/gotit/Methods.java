@@ -42,6 +42,19 @@ public class Methods {
         return date;
     }
 
+    public static Boolean validTimes(String currTime, String endTime, String beginTime) {
+        String[] data1 = currTime.split(":");
+        String[] data2 = endTime.split(":");
+        String[] data3 = beginTime.split(":");
+        int hour1 = Integer.parseInt(data1[0]);
+        int hour2 = Integer.parseInt(data2[0]);
+        int hour3 = Integer.parseInt(data2[0]);
+        int min1 = Integer.parseInt(data1[1]);
+        int min2 = Integer.parseInt(data2[1]);
+        int min3 = Integer.parseInt(data3[1]);
+        return true;
+    }
+
     // return 1 when t1 is later, -1 when t1 is earlier, and 0 when equal
     public static int compareTimes(String t1, String t2) {
         try {
@@ -73,11 +86,7 @@ public class Methods {
     public static void sendAutoResponse(Context c, String phone){
         SmsManager smsManager = SmsManager.getDefault();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);
-
-
-        String message = preferences.getString("message","");
-
-        smsManager.sendTextMessage(phone, null, message, null, null);
+        smsManager.sendTextMessage(phone, null, preferences.getString("message", "No message"), null, null);
     }
 
 }

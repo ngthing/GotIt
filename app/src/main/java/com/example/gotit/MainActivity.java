@@ -26,12 +26,13 @@ have either 'true' or 'false' saved in the preferences, When the app is launched
 * */
 public class MainActivity extends AppCompatActivity {
     Boolean isactive;
+    SharedPreferences preferences;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         Log.d("!!!!!!!!!!","!!!!!!!!!!");
 

@@ -31,14 +31,10 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // Get the data (SMS data) bound to intent
 
-
-        if (true) {
+        if (validate(context)) {
             Bundle bundle = intent.getExtras();
 
-
             SmsMessage[] msgs = null;
-
-            String str = "";
 
             if (bundle != null) {
                 // Retrieve the SMS Messages received
@@ -53,9 +49,6 @@ public class SmsReceiver extends BroadcastReceiver {
                     // Sender's phone number
                     phone = msgs[i].getOriginatingAddress();
                 }
-
-                Log.e("!!!!!!!!!", "TEST");
-
                 Methods.sendAutoResponse(context, phone);
             }
         }
@@ -67,7 +60,7 @@ public class SmsReceiver extends BroadcastReceiver {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (preferences.getBoolean("active", false)) {
-            if (preferences.getString(day,"").equals("true")) {
+            if (preferences.getBoolean(day,false)) {
                 String currTime = Methods.getTime();
                 String beginTime = preferences.getString("begin", "");
                 String endTime = preferences.getString("end", "");

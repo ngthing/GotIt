@@ -22,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="XX:XX"/>
+        android:text="XX:XX"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="XX:XX"/>
+        android:text="XX:XX"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,50 +48,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Sample message"/>
+        android:text="Sample message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
 
     <TextView
         android:id="@+id/monday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monday"/>
+        android:text="Monday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/tuesday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tues day"/>
+        android:text="Tuesday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/wednesday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wednesday"/>
+        android:text="Wednesday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/thursday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thursday"/>
+        android:text="Thursday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/friday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday"/>
+        android:text="Friday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/saturday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saturday"/>
+        android:text="Saturday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <TextView
         android:id="@+id/sunday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sunday"/>
+        android:text="Sunday"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
 
     <Button
         android:id="@+id/button"
@@ -97,5 +107,10 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Set AutoReponse"/>
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
